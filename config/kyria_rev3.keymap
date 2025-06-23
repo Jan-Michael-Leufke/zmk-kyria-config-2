@@ -152,7 +152,6 @@
             key-positions = <20 21>;
             bindings = <&kp EQUAL>;
             timeout-ms = <50>;
-            label = "Combo Lambda";
             layers = <0 2>;
         };
     };
