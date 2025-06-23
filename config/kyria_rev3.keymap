@@ -150,9 +150,18 @@
 
         combo_1 {
             key-positions = <20 21>;
-            bindings = <&kp EQUAL>;
+            bindings = <&lambda_macro>;
             timeout-ms = <50>;
             layers = <0 2>;
+        };
+    };
+
+
+    macros {
+        lambda_macro: lambda_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp EQUAL &kp GT>;
         };
     };
 
