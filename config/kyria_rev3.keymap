@@ -12,7 +12,9 @@
 #define fn 4
 #define combo 5
 #define mouse 6
-#define func 7
+#define scroll 7
+#define func 8
+#define sys 9
 
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1500  // Sets mouse movement speed (default is 600)
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // Sets scroll speed (default is 10)
@@ -45,8 +47,8 @@
             bindings = <
             &kp TAB   &kp Q &kp W &kp E &kp R &kp T                                                  &kp Z &kp U  &kp I     &kp O   &kp P    &kp BSPC
             &kp LCTRL   &kp A &kp S &kp D &kp F &kp G                                                &kp H &kp J  &kp K     &kp L   &kp SEMI &kp RET
-            &kp LSHFT &kp Y &kp X &kp C &kp V &kp B &kp LSHFT &kp LSHFT            &mo 1  &kp LSHFT  &kp N &kp M  &kp COMMA &kp DOT &kp MINUS &kp RSHFT
-            &kp LGUI &kp LALT &lt nav BSPC &lt num INS &kp DEL       &lt func ESC &lt fn BSPC &lt_hp sym SPACE &lt combo RET &kp RALT
+            &kp LSHFT &kp Y &kp X &kp C &kp V &kp B &kp LSHFT &kp LSHFT            &mo sys  &mo mouse  &kp N &kp M  &kp COMMA &kp DOT &kp MINUS &kp RSHFT
+            &kp LGUI &kp LALT &lt_hp sym BSPC &lt_hp num INS &lt_hp func DEL       &lt_hp mouse ESC &lt_hp fn BSPC &lt_hp nav SPACE &lt_hp combo RET &kp RALT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -69,14 +71,14 @@
         };
         sym_layer {
             display-name = "Sym";
-            // ---------------------------------------------------------------------------------------------------------------------------------
+            // ------------------------------------------------------------------------------------------------------------------------------ ;---
             // |  ESC  | EXCL | LT   | GT   | STAR |  AT  |                                |      | BSLH | LBRC | RBRC | FSLH | QMARK |
-            // | RCTRL | HASH | DQT  | APOS |GRAVE | CARET|                                | MINUS| LPAR | RPAR | EQUAL| SEMI | PLUS  |
+            // | caps-word | HASH | DQT  | APOS |GRAVE | CARET|                                | MINUS| LPAR | RPAR | EQUAL| SEMI | PLUS  |
             // | LSHFT | TILDE|DOLLAR|PERC  | AMPS | PIPE |      |      |   |      |       |      | UNDER| LBKT | RBKT | COLON|       |       
             //                       |      |      |      |   -  |   -  |   |   -  |   -   |      |      |      |
             bindings = <
                 &kp ESC   &kp EXCL &kp LT   &kp GT &kp STAR &kp AT                               &trans &kp BSLH &kp LBRC &kp RBRC &kp FSLH &kp QMARK
-                &kp RCTRL &kp HASH &kp DQT  &kp APOS &kp GRAVE &kp CARET                    &kp MINUS &kp LPAR &kp RPAR &kp EQUAL &kp SEMI &kp PLUS
+                &caps_word &kp HASH &kp DQT  &kp APOS &kp GRAVE &kp CARET                    &kp MINUS &kp LPAR &kp RPAR &kp EQUAL &kp SEMI &kp PLUS
                 &kp LSHFT &kp TILDE &kp DOLLAR &kp PERCENT &kp AMPS &kp PIPE &trans &trans        &trans &trans &trans &kp UNDER &kp LBKT &kp RBKT &kp COLON &trans
                 &trans &trans &trans &trans &trans        &trans &trans &trans &trans &trans
             >;
@@ -134,13 +136,29 @@
         mouse_layer {
             display-name = "Mouse";
             // ---------------------------------------------------------------------------------------------------------------------------------
-            // |       |       |       |       |       |       |                                 |       |       |   M   |       |       |       |
-            // |       |       |       |       |       |       |                                 |       |       |   O   |       |       |       |
+            // |       |       |       |       |       |       |                                 |       |       |   M up   |       |       |       |
+            // |       |       |       |       |       |       |                                 |       |  M left     |   M down  |  M right     |       |       |
             // |       |       |       |       |       |       |       |      |  |       |       |       |       |       |       |       |       |
             //                         |       |       |       |       |      |  |       |       |       |       |       |
             bindings = <
                 &trans  &trans  &trans  &msc SCRL_UP  &trans  &trans                                    &trans  &mkp MB4  &mmv MOVE_UP  &mkp MB5  &trans  &trans
                 &trans  &trans  &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_RIGHT  &trans                  &mkp LCLK  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp RCLK  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &mkp MCLK  &trans  &trans  &trans
+                                        &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+        scroll_layer {
+            display-name = "Scroll";
+            // ---------------------------------------------------------------------------------------------------------------------------------
+            // |       |       |       |       |       |       |                                 |       |       |   M   |       |       |       |
+            // |       |       |       |       |       |       |                                 |       |       |   O   |       |       |       |
+            // |       |       |       |       |       |       |       |      |  |       |       |       |       |       |       |       |       |
+            //                         |       |       |       |       |      |  |       |       |       |       |       |
+            bindings = <
+                &trans  &trans  &trans  &mmv MOVE_UP  &trans  &trans                                    &trans  &mkp MB4  &msc SCRL_UP &mkp MB5  &trans  &trans
+                &trans  &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans                  &mkp LCLK  &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_RIGHT  &mkp RCLK  &trans
                 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &mkp MCLK  &trans  &trans  &trans
                                         &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
             >;
@@ -157,6 +175,22 @@
             bindings = <
                 &trans  &trans  &trans  &trans  &trans  &trans                                    &trans  &trans  &trans  &trans  &trans  &trans
                 &trans  &trans  &trans  &trans  &trans  &trans                                    &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                                        &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+        sys_layer {
+            display-name = "System";
+            // ---------------------------------------------------------------------------------------------------------------------------------
+            // |       |       |       |       |       |       |                                 |       |       |       |       |       |       |
+            // |       |       |       |       |       |       |                                 |       |       |       |       |       |       |
+            // |       |       |       |       |       |       |       |      |  |       |       |       |       |       |       |       |       |
+            //                         |       |       |       |       |      |  |       |       |       |       |       |
+            bindings = <
+                &trans  &trans  &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2                                    &trans  &trans  &trans  &trans  &trans  &trans
+                 &kp RCTRL &trans &trans     &bt BT_SEL 3 &bt BT_SEL 4 &trans                                    &trans  &trans  &trans  &trans  &trans  &trans
                 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
                                         &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
             >;
