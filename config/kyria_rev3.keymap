@@ -41,14 +41,14 @@
             display-name = "Base";
             // ---------------------------------------------------------------------------------------------------------------------------------
             // |  TAB  |  Q  |  W  |  E   |  R   |  T   |                                          |  Z   |  U    |  I    |  O   |   P   |   BSPC  |
-            // |  LCTRL  |  A  |  S  |  D   |  F   |  G   |                                          |  H   |  J    |  K    |  L   |   ;   |   RET  |
+            // |  LCTRL  |  A  |  S  |  D   |  F   |  G   |                                          |  H   |  J    |  K    |  L   |   bspc   |   RET  |
             // | LSHIFT |  Y  |  X  |  C   |  V   |  B   | L SHIFT | L SHIFT |  | LAYER 1 | L SHIFT |  N   |  M    |  ,    |  .   |  MINUS | RSHFT |
             //                     | GUI  | LALT  | lt-1/BSPC  |  INS  |   DEL   |  |   ESC   |  BSPC  | lt-2/SPACE  | RET  | R-ALT |
             bindings = <
             &kp TAB   &kp Q &kp W &kp E &kp R &kp T                                                  &kp Z &kp U  &kp I     &kp O   &kp P    &kp BSPC
-            &kp LCTRL   &kp A &kp S &kp D &kp F &kp G                                                &kp H &kp J  &kp K     &kp L   &kp SEMI &kp RET
-            &kp LSHFT &kp Y &kp X &kp C &kp V &kp B &kp LSHFT &kp LSHFT            &mo sys  &mo mouse  &kp N &kp M  &kp COMMA &kp DOT &kp MINUS &kp RSHFT
-            &kp LGUI &kp LALT &lt_hp sym BSPC &lt_hp num INS &lt_hp func DEL       &lt_hp mouse ESC &lt_hp fn BSPC &lt_hp nav SPACE &lt_hp combo RET &kp RALT
+            &kp LCTRL   &kp A &kp S &kp D &kp F &kp G                                                &kp H &kp J  &kp K     &kp L   &kp BSPC &kp RET
+            &kp LSHFT &kp Y &kp X &kp C &kp V &kp B &kp LSHFT &kp LSHFT            &mo sys  &kp LC(LA(DEL))   &kp N &kp M  &kp COMMA &kp DOT &kp MINUS &kp RSHFT
+            &kp LGUI &kp LALT &lt_hp nav BSPC &lt_hp num INS &lt_hp func DEL       &lt_hp 7 ESC &lt_hp fn BSPC &lt_hp sym SPACE &lt_hp combo RET &kp RALT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
